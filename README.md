@@ -11,7 +11,8 @@ python3 manage.py runserver
 
 ## Vulnerability 1.  INJECTION
 
-1.1 SQL injection
+1.1 SQL injection  
+can be found - [Documentaion](./server/pages/views.py#L25)
 In an SQL injection the attacker is able to manipulate the SQL query that the server sends to the database. This application is vulnerable in the following way:
 user = request.POST.get("username")
 text = request.POST.get("textmessage")
@@ -19,20 +20,21 @@ q = f"INSERT INTO message (user, message) VALUES ('{user}', '{text}');"
 cur.execute(q)
 con.commit()
 
+
 where the attacker can now freely control what goes into the slots “user” and “text”. For example they could input: text=); DROP TABLE message” would drop the “message” table. The attacker  has the freedom freedom to do more or less any query. There are many ways to combat this type of attack. One solution would be to use an object-relation mapper. Another fix would be to use to use parameterized queries. For example in sqlite we could use c.execute("SELECT * FROM DATA WHERE NAME = ?", new_data).
 
-1.1 Cross-site scripting
+1.1 Cross-site scripting  
 The raw input is also subject to Cross-site scripting. The raw message is taken from the users and rendered to other users as is. An attacker could now send anything to the message boards chat and it would be rendered to all users.
 
 
-The issue is here: {{message|safe}}
+The issue is here: {{message|safe}}  
 By default Django protects against this, but by adding | safe to it we can bypass it and make our website more dangerous. To fix it we simply remove the |safe from the message and all is good.
 
 
 
 ## Vulnerability 2. Lack of logging
 
-Logging is essential for spotting users trying to attack your website. It’s essential to have logging of security critical-parts, like logins/registers of users, but also more trivial things. Preferably the logger would alert admins when enough suspicious activity is detected. The app has no logging currently. You can see an example of how to turn on logging here: [INSERT]
+Logging is essential for spotting users trying to attack your website. It’s essential to have logging of security critical-parts, like logins/registers of users, but also more trivial things. Preferably the logger would alert admins when enough suspicious activity is detected. The app has no logging currently. You can see an example of how to turn on logging here: [here](")
 
 
 
@@ -44,18 +46,18 @@ Cross-Site Request Forgery works like this:
 3. The attackers website now creates valid looking request, from the victims browser, to the real website. This works because the victim is still logged into the real website.
 
 An example post request body could have the following info:
-From: ?
-To: ?
-Amount?
+From: ?  
+To: ?  
+Amount?  
 
 The attackers would figure out exactly what the real request looks like and send it on behalf of the victim, when they get lured into the attacker website. Now the real website cannot possibly know if the request is valid, as the request is identical to a “valid” request.
 
-To combat this we add a new field:
+To combat this we add a new field:  
 
-From: ?
-To: ?
-Amount?
-Csrf_Token?
+From: ?  
+To: ?  
+Amount?  
+Csrf_Token?  
 
 We create a new token each time a user wants to send a post message (when the form is sent to the user). Now the attacker cannot create a correct looking, invalid request, as they cannot possibly guess what token the victim currently has. This more or less solves the CSRF vulnerability. There’s not much the attacker can do now.
 
