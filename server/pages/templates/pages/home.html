@@ -1,0 +1,22 @@
+<body>
+
+    <form action="insertMessage/" method="post">
+        {% csrf_token %}
+
+        <label for="inputField">Message to send to the chat:</label>
+        <input type="text" id="textmessage" name="textmessage" required>
+
+        <label for="inputField">Username for the message:</label>
+        <input type="text" id="username" name="username" required>
+
+        <button type="submit">Submit</button>
+    </form>
+        <div>
+            Messages:
+
+            {% for message in messages %}
+                <option value="{{message}}">{{message|safe}}</option>
+            {% endfor %}
+        </div>
+    </form>
+</body>
