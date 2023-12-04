@@ -79,6 +79,7 @@ Another insecure thing is the usage of execute-script in SQLite [execute-script]
 
 ## Vulnerability 5. Security Misconfiguration
 
-The application runs in debug mode by default. The main issue with it is that it exposes detailed errors and in worst case exposes credentials. For example you can see some info regarding your settings.py and from there see if any vulnerable components are used in the server. Django is known to filter some stuff out, but certainly not a good idea to leave it in debug mode. This one is also very easy to fix. Just turn debug off.
+The application runs in debug mode by default. The main issue with it is that it exposes detailed errors and in worst case exposes credentials. For example you can see some info regarding your settings.py and from there see if any vulnerable components are used in the server. Django is known to filter some stuff out, but certainly not a good idea to leave it in debug mode. This one is also very easy to fix. Just turn debug off.  
+[turn debug off here](server/config/settings.py#L26)
 
 You could also add many of the other vulnerabilities in here as many of them are currently possible because I use “dangerous” features and these are not needed at all. Things like making the XSS possible by adding the |safe to the rendering could also fit this category. 
