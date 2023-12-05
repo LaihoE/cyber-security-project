@@ -40,7 +40,7 @@ Logging is essential for spotting users trying to attack your website. It’s es
 
 
 ## Vulnerability 3. Cross-Site Request Forgery
-[csrf_token](server/pages/templates/pages/home.html#L4)  
+[How to add CSRF token](server/pages/templates/pages/home.html#L4)  [Disable CSRF check in django](server/config/settings.py#L70)  
 
 Cross-Site Request Forgery works like this:
 1. The victim is logged into the website we are targeting (for example a bank)
@@ -63,7 +63,7 @@ Csrf_Token?
 
 We create a new token each time a user wants to send a post message (when the form is sent to the user). Now the attacker cannot create a correct looking, invalid request, as they cannot possibly guess what token the victim currently has. This more or less solves the CSRF vulnerability. There’s not much the attacker can do now.
 
-Fixing this in Django is very easy. All you need to do is add a {% csrf_token %} to each form. Unfortunately I could not figure how to get the site to work without this token so its left in the app. To make the website insecure (if Django allowed it), I would just remove these lines from the code.
+Fixing this in Django is very easy. All you need to do is add a {% csrf_token %} to each form.
 
 This project is maybe not the best for demonstrating CSRF because it does not use accounts at all, but the principle is the same.
 

@@ -1,7 +1,7 @@
 <body>
 
     <form action="insertMessage/" method="post">
-        {% csrf_token %}
+        <!--UNCOMMENT ME TO ADD CSRF TOKEN {% csrf_token %}-->
 
         <label for="inputField">Message to send to the chat:</label>
         <input type="text" id="textmessage" name="textmessage" required>
