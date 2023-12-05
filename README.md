@@ -35,7 +35,7 @@ You can try this out by creating a message like this to the board; <script>alert
 ## Vulnerability 2. Lack of logging
 [Logging](server/config/settings.py#L33)  
 
-Logging is essential for spotting users trying to attack your website. It’s essential to have logging of security critical-parts, like logins/registers of users, but also more trivial things. Preferably the logger would alert admins when enough suspicious activity is detected. The app has no logging currently. You can see an example of how to turn on logging here: 
+Logging is essential for spotting users trying to attack your website. It’s essential to have logging of security critical-parts, like logins/registers of users, but also more trivial things. Preferably the logger would alert admins when enough suspicious activity is detected. The app has no logging currently. Click above link to see how logging could be turned on.
 
 
 
