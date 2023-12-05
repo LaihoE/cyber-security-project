@@ -70,6 +70,7 @@ This project is maybe not the best for demonstrating CSRF because it does not us
 
 
 ## Vulnerability 4. Vulnerable and outdated components
+[django version](requirements.txt#L2)  
 
 This one is especially problematic in the js/python world where there are lots of poorly maintained libraries. One needs to make sure the libraries you use are of high standard. For this project in particular, the Django verison is frozen at 3.0, which is an insecure version. You can just check any of djangos official docs and it will have a banner stating: “This document is for an insecure version of Django that is no longer supported. Please upgrade to a newer release!” This is mainly problematic because new vulnerabilities won’t be patched in the older versions. 
 
